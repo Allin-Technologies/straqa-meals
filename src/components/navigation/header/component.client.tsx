@@ -6,7 +6,6 @@ import {
   useMotionValueEvent,
   useScroll,
   Variants,
-  type MotionProps,
 } from "framer-motion";
 
 const variants: Variants = {

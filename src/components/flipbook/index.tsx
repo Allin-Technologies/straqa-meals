@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 
-import { FlippingState, PageFlip } from "page-flip";
+import { PageFlip } from "page-flip";
 import { IFlipSetting, IEventProps } from "./settings";
 
 interface IProps extends IFlipSetting, IEventProps {
@@ -146,5 +146,6 @@ const HTMLFlipBookForward = React.forwardRef(
     );
   }
 );
+HTMLFlipBookForward.displayName = "HTMLFlipBook";
 
 export const HTMLFlipBook = React.memo(HTMLFlipBookForward);

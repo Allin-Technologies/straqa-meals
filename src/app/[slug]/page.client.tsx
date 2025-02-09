@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import type { Data } from "./type";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { HTMLFlipBook } from "@/components/flipbook";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -25,18 +24,18 @@ interface PageProps {
 const PageCover = React.forwardRef<HTMLDivElement, PageProps>(
   ({ url }, ref) => (
     <div className='page page-cover' ref={ref} data-density='hard'>
-      <img src={url} className='w-full h-full' />
+      <img src={url} alt='' className='w-full h-full' />
     </div>
   )
 );
+PageCover.displayName = "PageCover";
 
-const Page = React.forwardRef<HTMLDivElement, PageProps>(
-  ({ number, url }, ref) => (
-    <div className='page' ref={ref}>
-      <img src={url} className='w-full h-full' />
-    </div>
-  )
-);
+const Page = React.forwardRef<HTMLDivElement, PageProps>(({ url }, ref) => (
+  <div className='page' ref={ref}>
+    <img src={url} alt='' className='w-full h-full' />
+  </div>
+));
+Page.displayName = "Page";
 
 export function PageClient(props: Data) {
   const flipBookRef = useRef<any | null>(null);
@@ -78,6 +77,7 @@ export function PageClient(props: Data) {
                   <img
                     src={`/assets/${props.slug}/${url}`}
                     className='w-full h-full'
+                    alt=''
                   />
                 </div>
               </CarouselItem>

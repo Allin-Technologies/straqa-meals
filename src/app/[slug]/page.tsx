@@ -24,13 +24,12 @@ export default async function Page({ params }: Props) {
 }
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = (await params).slug;
 
   const data = await getBySlug(slug);
-  const id = (await params).slug;
 
   const previousImages = (await parent).openGraph?.images || [];
 
