@@ -55,6 +55,19 @@ export function PageClientDepricated(props: DepricatedMenu) {
   const prevButtonClick = () => flipBookRef.current?.flipPrev();
   const onPage = (e: { data: number }) => setPage(e.data);
 
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   if (isMobile) {
     return (
       <div className='container w-full p-4 lg:p-8 space-y-8 flex flex-col justify-center items-center'>
