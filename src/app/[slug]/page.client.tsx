@@ -55,6 +55,41 @@ export function PageClientDepricated(props: DepricatedMenu) {
   const prevButtonClick = () => flipBookRef.current?.flipPrev();
   const onPage = (e: { data: number }) => setPage(e.data);
 
+  if (isMobile) {
+    return (
+      <div className='container w-full p-4 lg:p-8 space-y-8 flex flex-col justify-center items-center'>
+        <Carousel
+          setApi={setApi}
+          className='w-full max-w-[90%] mx-auto space-y-8'
+        >
+          <CarouselContent>
+            {pages.map((url, index) => (
+              <CarouselItem key={index}>
+                <div className='p-1'>
+                  <img
+                    src={`/assets/${props.slug}/${url}`}
+                    className='w-full h-full'
+                    alt=''
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <div className='flex justify-center items-center gap-3'>
+            <CarouselPrevious className='static translate-y-0' />
+
+            <div>
+              [<span>{current}</span> of <span>{count}</span>]
+            </div>
+
+            <CarouselNext className='static translate-y-0' />
+          </div>
+        </Carousel>
+      </div>
+    );
+  }
+
   return (
     <div className='container w-full p-4 lg:p-8 space-y-8 flex flex-col justify-center items-center'>
       {/* @ts-ignore */}

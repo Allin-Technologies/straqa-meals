@@ -17,6 +17,7 @@ export async function GET(
       },
     });
   } catch (error) {
+    console.error(error);
     return Response.json(
       { error: "Failed to fetch the image" },
       { status: 500 }
