@@ -1,6 +1,6 @@
 "use client";
 
-import type { Data } from "./type";
+import type { DepricatedMenu } from "@/payload-interface";
 
 import React, { useState, useRef } from "react";
 import { HTMLFlipBook } from "@/components/flipbook";
@@ -37,66 +37,23 @@ const Page = React.forwardRef<HTMLDivElement, PageProps>(({ url }, ref) => (
 ));
 Page.displayName = "Page";
 
-export function PageClient(props: Data) {
+export function PageClientDepricated(props: DepricatedMenu) {
   const flipBookRef = useRef<any | null>(null);
   const [api, setApi] = React.useState<CarouselApi>();
+
+  const pages =
+    props?.content?.items?.filter((item) => typeof item !== "string") || [];
+
   const [page, setPage] = useState<number>(0);
-  const [totalPage] = useState<number>(props?.pdf.length);
+  const [totalPage] = useState<number>(pages.length);
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+
   const isMobile = useIsMobile();
 
   const nextButtonClick = () => flipBookRef.current?.flipNext();
   const prevButtonClick = () => flipBookRef.current?.flipPrev();
   const onPage = (e: { data: number }) => setPage(e.data);
-
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
-
-  if (isMobile) {
-    return (
-      <div className='container w-full p-4 lg:p-8 space-y-8 flex flex-col justify-center items-center'>
-        <Carousel
-          setApi={setApi}
-          className='w-full max-w-[90%] mx-auto space-y-8'
-        >
-          <CarouselContent>
-            {props?.pdf.map((url, index) => (
-              <CarouselItem key={index}>
-                <div className='p-1'>
-                  <img
-                    src={`/assets/${props.slug}/${url}`}
-                    className='w-full h-full'
-                    alt=''
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-
-          <div className='flex justify-center items-center gap-3'>
-            <CarouselPrevious className='static translate-y-0' />
-
-            <div>
-              [<span>{current}</span> of <span>{count}</span>]
-            </div>
-
-            <CarouselNext className='static translate-y-0' />
-          </div>
-        </Carousel>
-      </div>
-    );
-  }
 
   return (
     <div className='container w-full p-4 lg:p-8 space-y-8 flex flex-col justify-center items-center'>
@@ -108,24 +65,22 @@ export function PageClient(props: Data) {
         size='stretch'
         showCover={true}
         onFlip={onPage}
-        usePortrait={false}
+        usePortrait={isMobile}
       >
         {/* Front Cover */}
-        <PageCover url={`/assets/${props.slug}/${props?.pdf[0]}`} />
+        <PageCover url={`${pages?.[0]?.url}`} />
 
         {/* Content Pages */}
-        {props?.pdf.slice(1, props?.pdf.length - 1).map((content, index) => (
+        {pages.slice(1, pages.length - 1).map((content, index) => (
           <Page
             key={index}
             number={index + 1}
-            url={`/assets/${props.slug}/${props?.pdf[index + 1]}`}
+            url={`${pages?.[index + 1]?.url}`}
           />
         ))}
 
         {/* Back Cover */}
-        <PageCover
-          url={`/assets/${props.slug}/${props?.pdf[props?.pdf.length - 1]}`}
-        />
+        <PageCover url={`${pages?.[pages.length - 1]?.url}`} />
       </HTMLFlipBook>
 
       <div className='container'>
@@ -140,7 +95,7 @@ export function PageClient(props: Data) {
 
           <Button
             onClick={nextButtonClick}
-            disabled={page === props?.pdf.length - 1}
+            disabled={page === pages.length - 1}
           >
             <ChevronRight />
           </Button>

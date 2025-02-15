@@ -1,5 +1,15 @@
 import canUseDOM from "./canUseDOM";
 
+export const getCMSURL = () => {
+  let url = process.env.CMS_SERVER_URL;
+
+  if (!url) {
+    url = "http://localhost:3001";
+  }
+
+  return url;
+};
+
 export const getServerSideURL = () => {
   let url = process.env.NEXT_PUBLIC_SERVER_URL;
 

@@ -9,6 +9,7 @@ import React, {
 
 import { PageFlip } from "page-flip";
 import { IFlipSetting, IEventProps } from "./settings";
+import { cn } from "@/lib/utils";
 
 interface IProps extends IFlipSetting, IEventProps {
   className: string;
@@ -29,6 +30,8 @@ const HTMLFlipBookForward = React.forwardRef(
 
     // @ts-ignore
     useImperativeHandle(ref, () => {
+      console.log(pageFlip);
+
       return {
         flipNext: () => pageFlip?.current?.flipNext(),
         flipPrev: () => pageFlip?.current?.flipPrev(),
@@ -140,7 +143,16 @@ const HTMLFlipBookForward = React.forwardRef(
     }, [pages]);
 
     return (
-      <div ref={htmlElementRef} className={props.className} style={props.style}>
+      <div
+        ref={htmlElementRef}
+        className={cn(
+          {
+            // "w-[50%]": props.usePortrait,
+          },
+          props.className
+        )}
+        style={props.style}
+      >
         {pages}
       </div>
     );

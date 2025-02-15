@@ -6,7 +6,9 @@ export async function Header() {
   return (
     <HeaderClient>
       <nav className='px-4 xl:px-0 py-6 lg:py-8 container relative z-20 flex justify-between items-center'>
-        <Logo className='max-w-[6rem] lg:max-w-[9.375rem]' />
+        <Link href='/'>
+          <Logo className='max-w-[6rem] lg:max-w-[9.375rem]' />
+        </Link>
 
         <Link
           href='https://straqa.com/'

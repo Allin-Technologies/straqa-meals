@@ -44,7 +44,7 @@ export default function RootLayout({
           className={cn(
             geistSans.variable,
             geistMono.variable,
-            "font-sans scroll-smooth antialiased w-screen overflow-hidden bg-[url(/set-of-restaurant-doodles-vector.jpg)]"
+            "font-sans scroll-smooth antialiased w-screen overflow-hidden bg-[url(/set-of-restaurant-doodles-vector.jpg)] bg-center"
           )}
         >
           <Header />
