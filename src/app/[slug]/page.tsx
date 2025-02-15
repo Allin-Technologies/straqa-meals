@@ -1,25 +1,25 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { getDepricatedMenuBySlug } from "@/actions/get-by-slug";
 import { getServerSideURL } from "@/utilities/getURL";
 import { PageClientDepricated } from "./page.client";
 import { Sofadi_One } from "next/font/google";
-import { cn } from "@/utilities/ui";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+// import { cn } from "@/utilities/ui";
+// import {
+//   Accordion,
+//   AccordionContent,
+//   AccordionItem,
+//   AccordionTrigger,
+// } from "@/components/ui/accordion";
 
-const sofadiOne = Sofadi_One({
-  variable: "--font-sofadi-one",
-  weight: "400",
-  subsets: ["latin"],
-});
+// const sofadiOne = Sofadi_One({
+//   variable: "--font-sofadi-one",
+//   weight: "400",
+//   subsets: ["latin"],
+// });
 
-const fallbackbg = `${getServerSideURL()}/set-of-restaurant-doodles-vector.jpg`;
+// const fallbackbg = `${getServerSideURL()}/set-of-restaurant-doodles-vector.jpg`;
 
 type Props = {
   params: Promise<{ slug: string }>;
