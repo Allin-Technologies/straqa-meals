@@ -1,4 +1,5 @@
 // import Image from "next/image";
+// import Image from "next/image";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { getDepricatedMenuBySlug } from "@/actions/get-by-slug";
@@ -18,7 +19,13 @@ import { PageClientDepricated } from "./page.client";
 //   weight: "400",
 //   subsets: ["latin"],
 // });
+// const sofadiOne = Sofadi_One({
+//   variable: "--font-sofadi-one",
+//   weight: "400",
+//   subsets: ["latin"],
+// });
 
+// const fallbackbg = `${getServerSideURL()}/set-of-restaurant-doodles-vector.jpg`;
 // const fallbackbg = `${getServerSideURL()}/set-of-restaurant-doodles-vector.jpg`;
 
 type Props = {
