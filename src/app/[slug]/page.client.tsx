@@ -66,11 +66,7 @@ export function PageClientDepricated(props: DepricatedMenu) {
             {pages.map((url, index) => (
               <CarouselItem key={index}>
                 <div className='p-1'>
-                  <img
-                    src={`/assets/${props.slug}/${url}`}
-                    className='w-full h-full'
-                    alt=''
-                  />
+                  <img src={`${url}`} className='w-full h-full' alt='' />
                 </div>
               </CarouselItem>
             ))}
