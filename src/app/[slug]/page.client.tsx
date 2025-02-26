@@ -70,37 +70,35 @@ export function PageClientDepricated(props: DepricatedMenu) {
 
   if (isMobile) {
     return (
-      <div className='container w-full p-4 lg:p-8 space-y-8 flex flex-col justify-center items-center'>
-        <Carousel
-          setApi={setApi}
-          className='w-full max-w-[90%] mx-auto space-y-8'
-        >
-          <CarouselContent>
-            {pages.map((item, index) => (
-              <CarouselItem key={index}>
-                <div className='p-1'>
-                  <img src={`${item?.url}`} className='w-full h-full' alt='' />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+      <Carousel
+        setApi={setApi}
+        className='w-full lg:max-w-[90%] mx-auto space-y-8'
+      >
+        <CarouselContent>
+          {pages.map((item, index) => (
+            <CarouselItem key={index}>
+              <div className='p-1'>
+                <img src={`${item?.url}`} className='w-full h-full' alt='' />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
 
-          <div className='flex justify-center items-center gap-3'>
-            <CarouselPrevious className='static translate-y-0' />
+        <div className='flex justify-center items-center gap-3'>
+          <CarouselPrevious className='static translate-y-0' />
 
-            <div>
-              [<span>{current}</span> of <span>{count}</span>]
-            </div>
-
-            <CarouselNext className='static translate-y-0' />
+          <div>
+            [<span>{current}</span> of <span>{count}</span>]
           </div>
-        </Carousel>
-      </div>
+
+          <CarouselNext className='static translate-y-0' />
+        </div>
+      </Carousel>
     );
   }
 
   return (
-    <div className='container w-full p-4 lg:p-8 space-y-8 flex flex-col justify-center items-center'>
+    <>
       {/* @ts-ignore */}
       <HTMLFlipBook
         ref={flipBookRef}
@@ -145,6 +143,6 @@ export function PageClientDepricated(props: DepricatedMenu) {
           </Button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
