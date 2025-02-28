@@ -41,7 +41,7 @@ export default async function Page({ params }: Props) {
   if (!data) notFound();
 
   return (
-    <div className='container w-full p-4 lg:p-8 flex flex-col justify-center items-center min-h-dvh'>
+    <div className='container w-full p-4 lg:p-8 py-20 lg:py-20 flex flex-col justify-end lg:justify-center items-center min-h-dvh'>
       <PageClientDepricated {...data} />
     </div>
   );
